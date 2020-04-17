@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="MasterDataServices" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="Addresses" EntityType="MasterDataServices.Addresses"/>
+        <EntitySet Name="PartnerTypes" EntityType="MasterDataServices.PartnerTypes"/>
+        <EntitySet Name="Partners" EntityType="MasterDataServices.Partners"/>
+        <AssociationSet Name="Partners_address" Association="MasterDataServices.Partners_address">
+          <End Role="Partners" EntitySet="Partners"/>
+          <End Role="Addresses" EntitySet="Addresses"/>
+        </AssociationSet>
+        <AssociationSet Name="Partners_type" Association="MasterDataServices.Partners_type">
+          <End Role="Partners" EntitySet="Partners"/>
+          <End Role="PartnerTypes" EntitySet="PartnerTypes"/>
+        </AssociationSet>
+      </EntityContainer>
+      <EntityType Name="Addresses">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="address1" Type="Edm.String"/>
+        <Property Name="address2" Type="Edm.String"/>
+        <Property Name="address3" Type="Edm.String"/>
+        <Property Name="country" Type="Edm.String" MaxLength="20"/>
+        <Property Name="city" Type="Edm.String" MaxLength="20"/>
+        <Property Name="postcode" Type="Edm.String" MaxLength="5"/>
+        <NavigationProperty Name="partners" Relationship="MasterDataServices.Partners_address" FromRole="Addresses" ToRole="Partners"/>
+      </EntityType>
+      <EntityType Name="PartnerTypes">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="type" Type="Edm.String" MaxLength="3"/>
+        <Property Name="description" Type="Edm.String" MaxLength="255"/>
+        <NavigationProperty Name="paertners" Relationship="MasterDataServices.Partners_type" FromRole="PartnerTypes" ToRole="Partners"/>
+      </EntityType>
+      <EntityType Name="Partners">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="name1" Type="Edm.String"/>
+        <Property Name="name2" Type="Edm.String"/>
+        <Property Name="name3" Type="Edm.String"/>
+        <NavigationProperty Name="address" Relationship="MasterDataServices.Partners_address" FromRole="Partners" ToRole="Addresses"/>
+        <NavigationProperty Name="type" Relationship="MasterDataServices.Partners_type" FromRole="Partners" ToRole="PartnerTypes"/>
+        <Property Name="address_ID" Type="Edm.Guid"/>
+        <Property Name="type_ID" Type="Edm.Int32"/>
+      </EntityType>
+      <Association Name="Partners_address">
+        <End Role="Partners" Type="MasterDataServices.Partners" Multiplicity="*"/>
+        <End Role="Addresses" Type="MasterDataServices.Addresses" Multiplicity="0..1"/>
+        <ReferentialConstraint>
+          <Principal Role="Addresses">
+            <PropertyRef Name="ID"/>
+          </Principal>
+          <Dependent Role="Partners">
+            <PropertyRef Name="address_ID"/>
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="Partners_type">
+        <End Role="Partners" Type="MasterDataServices.Partners" Multiplicity="*"/>
+        <End Role="PartnerTypes" Type="MasterDataServices.PartnerTypes" Multiplicity="0..1"/>
+        <ReferentialConstraint>
+          <Principal Role="PartnerTypes">
+            <PropertyRef Name="ID"/>
+          </Principal>
+          <Dependent Role="Partners">
+            <PropertyRef Name="type_ID"/>
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Annotations Target="MasterDataServices.EntityContainer/Partners" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
