@@ -14,4 +14,5 @@ async function doCreate() {
 
   console.log(`rows fetched from partner type : ${personTypes.length}`);
 
+
 }
