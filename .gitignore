@@ -11,7 +11,7 @@ target/
 # Web IDE, App Studio
 .che/
 .gen/
-
+.idea/
 # MTA
 *_mta_build_tmp
 *.mtar
