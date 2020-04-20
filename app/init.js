@@ -1,13 +1,17 @@
 
+/**
+ * create test data.
+ */
+async function doCreate() {
 
+  let {
+    data: {
+      value
+    }
+  } = await axios.get('/master-data-services/PartnerTypes');
 
-axios
-    .get('/master-data-services/PartnerTypes')
-    .then(res => new Promise( resolve => {
-      resolve(res)  
-    })).then(console.log)
+  let personTypes = value;
 
+  console.log(`rows fetched from partner type : ${personTypes.length}`);
 
-axios
-    .get('/master-data-services')
-    .then(console.log);
+}
