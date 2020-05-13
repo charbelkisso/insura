@@ -1,27 +1,27 @@
 {
-    "name": "insura",
-    "version": "1.0.0",
-    "description": "A simple CAP project.",
-    "repository": "<Add your repository here>",
-    "license": "UNLICENSED",
-    "private": true,
-    "dependencies": {
-        "@sap/cds": "^3",
-        "@sap/hana-client": "^2.4.196",
-        "express": "^4"
-    },
-    "scripts": {
-        "start": "npx cds run",
-        "watch": "npx cds watch"
-    },
-    "devDependencies": {
-        "sqlite3": "^4.2.0"
-    },
-    "cds": {
-        "requires": {
-            "db": {
-                "kind": "hana"
-            }
-        }
+  "name": "insura",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^3",
+    "@sap/hana-client": "^2.4.196",
+    "express": "^4"
+  },
+  "scripts": {
+    "start": "npx cds run",
+    "watch": "npx cds watch"
+  },
+  "devDependencies": {
+    "sqlite3": "^4.2.0"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "hana"
+      }
     }
+  }
 }
