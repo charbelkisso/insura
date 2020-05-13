@@ -19,10 +19,7 @@
   "cds": {
     "requires": {
       "db": {
-        "kind": "sqlite",
-        "credentials": {
-          "database": "insura.db"
-        }
+        "kind": "hana"
       }
     }
   }

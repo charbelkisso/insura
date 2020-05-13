@@ -16,6 +16,10 @@ target/
 *_mta_build_tmp
 *.mtar
 mta_archives/
+.vscode/
+
+# git
+.git/
 
 # Other
 .DS_Store
