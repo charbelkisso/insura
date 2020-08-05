@@ -32,6 +32,4 @@ entity PartnerTypes {
     key ID          : Integer;
         type        : String(3);
         description : String(255);
-        paertners   : Association to many Partners
-                          on paertners.type = $self;
 }
