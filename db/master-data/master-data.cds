@@ -1,7 +1,9 @@
 namespace masterdata;
 
-using {cuid} from '@sap/cds/common';
-
+using {
+    cuid,
+    managed
+} from '@sap/cds/common';
 
 type Contact {
     phoneNumber : String(40);
@@ -9,23 +11,24 @@ type Contact {
     email       : String(100);
 }
 
-entity Partners : cuid {
-    name1   : String;
-    name2   : String;
-    name3   : String;
-    address : Association to Addesses;
-    type    : Association to PartnerTypes;
+entity Partners : cuid, managed {
+    name1    : String;
+    name2    : String;
+    name3    : String;
+    address  : Composition of many Addesses
+                   on address.partner = $self;
+    type     : Association to PartnerTypes;
+    idNumber : Composition of one PartnerIDs on idNumber.partner = $self;
 }
 
-entity Addesses : cuid {
+entity Addesses : cuid, managed {
     address1 : String;
     address2 : String;
     address3 : String;
     country  : String(20);
     city     : String(20);
     postcode : String(5);
-    partners : Association to many Partners
-                   on partners.address = $self;
+    partner  : Association to Partners;
 }
 
 entity PartnerTypes {
@@ -39,10 +42,11 @@ entity PartnerTypes {
 entity PartnerIDs : cuid {
     idNumber : String(20);
     type     : Association to IdTypes;
+    partner  : Association to Partners;
 }
 
 entity IdTypes {
-    key id          : Integer;
+    key ID          : Integer;
         type        : String(3);
         description : String(255);
         partnerId   : Association to many PartnerIDs

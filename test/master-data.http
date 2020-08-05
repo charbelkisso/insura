@@ -1,0 +1,24 @@
+DELETE http://localhost:4004/master-data-services/Partners(1b907a83-9355-4166-9f1b-c7964b1af55f) HTTP/1.1
+
+###
+
+POST http://localhost:4004/master-data-services/Partners HTTP/1.1
+Content-Type: application/json
+
+{
+    "ID": "1b907a83-9355-4166-9f1b-c7964b1af55f",
+    "name1":"Charbel",
+    "name2": "Kisso",
+    "address":[
+        {
+            "address1":"Geijersgatan 16",
+            "city": "Västerås",
+            "country": "Svergie"
+        }
+    ],
+    "type_ID": 1,
+    "idNumber":{
+        "idNumber": "198802105356",
+        "type_ID": 1
+    }
+}
