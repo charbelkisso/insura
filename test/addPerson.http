@@ -1,0 +1,30 @@
+
+
+### Create new Person
+POST http://localhost:4004/person/Persons HTTP/1.1
+Content-Type: application/json
+
+{
+    "name1": "Charbel",
+    "name2" : "Kisso",
+    "personalNumber" : "198802105356",
+    "contactInfo_phoneNumber": "0733642133"
+}
+
+
+### Get list of persons
+GET http://localhost:4004/person/Persons HTTP/1.1
+Content-Type: application/json
+
+
+### Edit the Created Person
+PATCH http://localhost:4004/person/Persons(f101d4b9-c66b-4db0-a776-64755645ee66)
+Content-Type: application/json
+
+{
+    "type_ID": 1
+}
+
+
+### Delete the Created Person
+DELETE http://localhost:4004/person/Persons(f101d4b9-c66b-4db0-a776-64755645ee66) HTTP/1.1
