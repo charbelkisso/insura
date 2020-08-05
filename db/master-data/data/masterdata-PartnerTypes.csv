@@ -1,3 +1,5 @@
 ID,type,description
 1,001,Person
-2,002,Company
+2,002,Legal Entity
+3,003,One Man Business
+4,004,Simple Company

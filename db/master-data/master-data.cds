@@ -32,4 +32,19 @@ entity PartnerTypes {
     key ID          : Integer;
         type        : String(3);
         description : String(255);
+        partner     : Association to many Partners
+                          on partner.type = $self;
+}
+
+entity PartnerIDs : cuid {
+    idNumber : String(20);
+    type     : Association to IdTypes;
+}
+
+entity IdTypes {
+    key id          : Integer;
+        type        : String(3);
+        description : String(255);
+        partnerId   : Association to many PartnerIDs
+                          on partnerId.type = $self;
 }
