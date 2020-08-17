@@ -20,6 +20,44 @@
     "sqlite3": "^4.2.0"
   },
   "cds": {
+    "build": {
+      "target": "gen",
+      "tasks": [
+        {
+          "src": "srv",
+          "for": "node-cf",
+          "options": {
+            "model": [
+              "db",
+              "srv",
+              "app"
+            ]
+          }
+        },
+        {
+          "src": "db",
+          "for": "hana",
+          "options": {
+            "model": [
+              "db",
+              "srv",
+              "app"
+            ]
+          }
+        },
+        {
+          "src": "app",
+          "for": "fiori",
+          "options": {
+            "model": [
+              "db",
+              "srv",
+              "app"
+            ]
+          }
+        }
+      ]
+    },
     "requires": {
       "db": {
         "kind": "sql",
