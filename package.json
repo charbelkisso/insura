@@ -1,70 +1,73 @@
 {
-  "name": "insura",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^3",
-    "@sap/hana-client": "^2.4.196",
-    "axios": "^0.19.2",
-    "express": "^4",
-    "helmet": "^4.0.0"
-  },
-  "scripts": {
-    "start": "npx cds run",
-    "watch": "npx cds watch"
-  },
-  "devDependencies": {
-    "sqlite3": "^4.2.0"
-  },
-  "cds": {
-    "build": {
-      "target": "gen",
-      "tasks": [
-        {
-          "src": "srv",
-          "for": "node-cf",
-          "options": {
-            "model": [
-              "db",
-              "srv",
-              "app"
-            ]
-          }
-        },
-        {
-          "src": "db",
-          "for": "hana",
-          "options": {
-            "model": [
-              "db",
-              "srv",
-              "app"
-            ]
-          }
-        },
-        {
-          "src": "app",
-          "for": "fiori",
-          "options": {
-            "model": [
-              "db",
-              "srv",
-              "app"
-            ]
-          }
-        }
-      ]
+    "name": "insura",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^3",
+        "@sap/hana-client": "^2.4.196",
+        "axios": "^0.19.2",
+        "express": "^4",
+        "helmet": "^4.0.0"
     },
-    "requires": {
-      "db": {
-        "kind": "sql",
-        "credentials": {
-          "database": "insura.db"
+    "scripts": {
+        "start": "npx cds run",
+        "watch": "npx cds watch"
+    },
+    "devDependencies": {
+        "sqlite3": "^4.2.0"
+    },
+    "cds": {
+        "hana": {
+            "deploy-format": "hdbtable"
+        },
+        "build": {
+            "target": "gen",
+            "tasks": [
+                {
+                    "src": "srv",
+                    "for": "node-cf",
+                    "options": {
+                        "model": [
+                            "db",
+                            "srv",
+                            "app"
+                        ]
+                    }
+                },
+                {
+                    "src": "db",
+                    "for": "hana",
+                    "options": {
+                        "model": [
+                            "db",
+                            "srv",
+                            "app"
+                        ]
+                    }
+                },
+                {
+                    "src": "app",
+                    "for": "fiori",
+                    "options": {
+                        "model": [
+                            "db",
+                            "srv",
+                            "app"
+                        ]
+                    }
+                }
+            ]
+        },
+        "requires": {
+            "db": {
+                "kind": "sql",
+                "credentials": {
+                    "database": "insura.db"
+                }
+            }
         }
-      }
     }
-  }
 }
